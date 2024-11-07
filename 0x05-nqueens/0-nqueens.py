@@ -42,8 +42,15 @@ def queens(n, row=0, columns=[], diag1=[], diag2=[]):
     """
     if row < n:
         for col in range(n):
-            if col not in columns and row + col not in diag1 and row - col not in diag2:
-                yield from queens(n, row + 1, columns + [col], diag1 + [row + col], diag2 + [row - col])
+            if (col not in columns and
+                    row + col not in diag1 and
+                    row - col not in diag2):
+                yield from queens(
+                    n, row + 1,
+                    columns + [col],
+                    diag1 + [row + col],
+                    diag2 + [row - col]
+                )
     else:
         yield columns
 
