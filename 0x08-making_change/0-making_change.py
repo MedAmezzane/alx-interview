@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-Change comes from within
+Module containing the make_change function.
 """
 
 
 def make_change(coins, total):
     """
-    Determines the fewest number of coins needed to meet a given total.
+    Determines the fewest number of coins needed to achieve a given total.
 
     Args:
         coins (list): A list of the denominations of coins available.
@@ -17,20 +17,20 @@ def make_change(coins, total):
              Returns 0 if the total is 0 or less.
              Returns -1 if the total cannot be met using the available coins.
     """
-    current_sum = 0
-    coin_count = 0
-
-    if total < 1:
+    if not coins:
+        return -1
+    if total <= 0:
         return 0
 
-    # Iterate through coins sorted in descending order
-    for coin in sorted(coins, reverse=True):
-        while current_sum + coin <= total:
-            current_sum += coin
+    coin_count = 0
+    coins = sorted(coins, reverse=True)  # Sort coins in descending order
+
+    for coin in coins:
+        while coin <= total:
+            total -= coin
             coin_count += 1
 
-    # If the total cannot be achieved, return -1
-    if current_sum != total:
-        return -1
+        if total == 0:
+            return coin_count
 
-    return coin_count
+    return -1
