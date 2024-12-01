@@ -4,7 +4,7 @@ Module containing the make_change function.
 """
 
 
-def make_change(coins, total):
+def makeChange(coins, total):
     """
     Determines the fewest number of coins needed to achieve a given total.
 
